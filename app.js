@@ -1,7 +1,15 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'ejs');
+
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello world</h1>');
+    res.render('index');
 });
 
 port = process.env.PORT || 3000
